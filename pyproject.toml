@@ -1,0 +1,38 @@
+[project]
+name = "nonebot-plugin-YouTube"
+dynamic = ["version"]
+description = "A nonebot2 plugin for YouTube link handling."
+authors = [{ name = "Perseus037", email = "1209228678@qq.com" }]
+dependencies = [
+    "nonebot2>=2.1.1",
+    "pydantic>=1.10.13,<2",
+    "nonebot-adapter-onebot>=2.3.1",
+    "aiohttp >=3.9.1",
+    "requests>=2.26.0"
+]
+requires-python = ">=3.8,<4.0"
+readme = "README.md"
+license = { text = "MIT" }
+keywords = ["youtube", "nonebot", "nonebot2", "bot", "qq", "video"]
+classifiers = [
+    "Natural Language :: Chinese (Simplified)",
+    "Topic :: Communications",
+    "Topic :: Communications :: Chat",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content"
+]
+
+[project.urls]
+homepage = "https://github.com/Perseus037/nonebot_plugin_YouTube/"
+
+[tool.pdm.version]
+source = "file"
+path = "nonebot_plugin_YouTube/__init__.py"
+
+[tool.pdm.build]
+includes = []
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
