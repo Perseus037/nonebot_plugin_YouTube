@@ -3,7 +3,7 @@
 
 # noneBot-plugin-YouTube
 
-_ 一个多功能的youtube视频解析nonebot2插件 _
+_ ✨一个多功能的youtube视频解析nonebot2插件✨ _
 
 <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="python">
 <a href="https://pdm.fming.dev">
