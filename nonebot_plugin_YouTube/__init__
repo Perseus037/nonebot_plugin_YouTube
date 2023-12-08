@@ -1,1 +1,67 @@
+import re
+import base64
+import requests
+from io import BytesIO
+from nonebot import on_regex
+from nonebot.adapters.onebot.v11 import Bot, MessageEvent, MessageSegment
 
+#正则表达式匹配链接
+youtube_regex = r"(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)([0-9A-Za-z_-]{11})"
+youtube_handler = on_regex(youtube_regex, priority=5)
+
+# 输入 YouTube Data API 密钥
+youtube_api_key = "在这里输入你的api密匙"
+
+@youtube_handler.handle()
+async def handle_youtube_link(bot: Bot, event: MessageEvent):
+    message_text = event.get_plaintext()
+    video_id = extract_youtube_id(message_text)
+
+    if video_id:
+        video_info = get_youtube_video_info(video_id, youtube_api_key)
+        if video_info:
+            image_base64 = get_image_base64(video_info['thumbnail'])
+
+            if image_base64:
+                await youtube_handler.finish(MessageSegment.image(f'base64://{image_base64}') + "\n" + video_info['title'])
+
+            else:
+                await youtube_handler.finish("无法获取视频封面。")
+        else:
+            await youtube_handler.finish("无法获取视频信息。")
+    else:
+        await youtube_handler.finish("未检测到有效的 YouTube 链接。")
+
+def extract_youtube_id(url: str):
+    # 使用正则表达式提取视频ID
+    regex = r"(?:youtube\.com/watch\?v=|youtu\.be/)([0-9A-Za-z_-]{11})"
+    matches = re.search(regex, url)
+
+    if matches:
+        return matches.group(1)
+
+    return None
+
+def get_youtube_video_info(video_id: str, api_key: str):
+    url = f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={api_key}&part=snippet"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        items = data.get("items")
+
+        if items and len(items) > 0:
+            item = items[0]["snippet"]
+            return {
+                "title": item["title"],
+                "thumbnail": item["thumbnails"]["high"]["url"]
+            }
+
+    return None
+
+def get_image_base64(image_url: str):
+    response = requests.get(image_url)
+
+    if response.status_code == 200:
+        return base64.b64encode(BytesIO(response.content).read()).decode()
+    return None
