@@ -1,9 +1,23 @@
 import re
 import base64
 import requests
+
 from io import BytesIO
+
 from nonebot import on_regex
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent, MessageSegment
+from nonebot.plugin import PluginMetadata
+
+__version__ = "0.1.0.post1"
+__plugin_meta__ = PluginMetadata(
+    name="nonebot_plugin_Youtube",
+    description="Youtube多功能视频解析",
+    usage="使用：检测到YouTube视频链接自动触发",
+    homepage="https://github.com/Perseus037/nonebot_plugin_YouTube",
+    type="application",
+    config=None,
+    supported_adapters={"~onebot.v11"},
+)
 
 #正则表达式匹配链接
 youtube_regex = r"(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)([0-9A-Za-z_-]{11})"
