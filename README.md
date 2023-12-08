@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://github.com/Perseus037/data/blob/master/youtube.png" width="280" height="280" alt="YouTube视频解析图标" >
 
-# noneBot-plugin-YouTube
+# noneBot-plugin-youtube
 
 _ 一个多功能的youtube视频解析nonebot2插件 _
 
@@ -36,7 +36,7 @@ ps：有任何问题或建议可以直接提issue或者发email到qq邮箱，我
 开发中，没发包，无法使用包管理器安装。
 
 如果使用gitclone安装的话，请将文件下载到site—package文件夹下，
-然后打开 nonebot2 项目根目录下的 `pyproject.toml` 文件,在 `[tool.nonebot]` 部分的 `plugins` 项里追加写入nonebot_plugin_babattleline即可
+然后打开 nonebot2 项目根目录下的 `pyproject.toml` 文件,在 `[tool.nonebot]` 部分的 `plugins` 项里追加写入nonebot_plugin_youtube即可
 
 <!--
 <details open>
@@ -44,7 +44,7 @@ ps：有任何问题或建议可以直接提issue或者发email到qq邮箱，我
 在 nonebot2 项目的根目录下打开命令行, 输入以下指令即可安装
 
 ```bash
-nb plugin install nonebot_plugin_batarot
+nb plugin install nonebot_plugin_youtube
 ```
 -->
 
@@ -58,7 +58,7 @@ nb plugin install nonebot_plugin_batarot
 <summary>pip</summary>
 
 ```bash
-pip install nonebot_plugin_batarot
+pip install nonebot_plugin_youtube
 ```
 
 </details>
@@ -66,7 +66,7 @@ pip install nonebot_plugin_batarot
 <summary>pdm</summary>
 
 ```bash
-pdm add nonebot_plugin_batarot
+pdm add nonebot_plugin_youtube
 ```
 
 </details>
@@ -74,7 +74,7 @@ pdm add nonebot_plugin_batarot
 <summary>poetry</summary>
 
 ```bash
-poetry add nonebot_plugin_batarot
+poetry add nonebot_plugin_youtube
 ```
 
 </details>
@@ -82,7 +82,7 @@ poetry add nonebot_plugin_batarot
 <summary>conda</summary>
 
 ```bash
-conda install nonebot_plugin_batarot
+conda install nonebot_plugin_youtube
 ```
 
 </details>
@@ -93,7 +93,7 @@ conda install nonebot_plugin_batarot
 [tool.nonebot]
 plugins = [
     # ...
-    "nonebot_plugin_batarot"
+    "nonebot_plugin_youtube"
 ]
 ```
 
