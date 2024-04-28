@@ -68,7 +68,6 @@ async def handle_youtube_link(bot: Bot, event: MessageEvent):
             image_base64 = get_image_base64(video_info['thumbnail'])
 
             if image_base64:
-                # 将图片和视频信息打包成消息
                 await youtube_handler.finish(wrap_youtube_event(image_base64, video_info))
             else:
                 await youtube_handler.finish("无法获取视频封面。")
@@ -91,7 +90,7 @@ def wrap_youtube_event(image_base64, vedio_info: dict):
 
 
 def extract_youtube_id(url: str):
-    # 使用正则表达式提取视频ID，增设shorts类型的链接匹配
+    # 使用正则表达式提取视频ID
     regex = r"(?:youtube\.com/watch\?v=|youtu\.be/|youtube\.com/shorts/)([0-9A-Za-z_-]{11})"
     matches = re.search(regex, url)
 
@@ -130,16 +129,27 @@ def get_youtube_video_info(video_id: str, api_key: str):
                 
             
             return {
+                # 视频标题
                 "title": prefix + item["title"],
+                # 视频略缩图
                 "thumbnail": item["thumbnails"]["url"],
+                # 视频标签
                 "tags": item["tags"][:10] if 'tags' in item else '无',
+                # 简介
                 "description": item["description"] if 'description' in item else '无',
+                # 频道名
                 "channelTitle": item["channelTitle"],
+                # 视频分区
                 "category": categoriesIdInfo[item['categoryId']],
+                # 时间
                 "publishedAt": item["publishedAt"].split("T")[0],
+                # 播放数
                 "viewCount": statistics["viewCount"],
+                # 获赞数
                 "likeCount": statistics['likeCount'],
+                # 收藏数
                 "favoriteCount": statistics['favoriteCount'],
+                # 评论数
                 "commentCount": statistics['commentCount']
             }
 
